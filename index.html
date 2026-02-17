@@ -34,7 +34,6 @@
         
         .about-content { background: var(--white); padding: 3rem; border-radius: 8px; box-shadow: var(--shadow); border-left: 8px solid var(--accent); }
         .about-content p { margin-bottom: 1.5rem; font-size: 1.15rem; color: #444; line-height: 1.8; }
-        .about-content p:last-child { margin-bottom: 0; }
         
         .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
         
@@ -44,6 +43,7 @@
         .btn { display: inline-block; margin-top: 1.5rem; padding: 0.8rem 2rem; background: var(--accent); color: var(--white); border-radius: 4px; font-weight: bold; cursor: pointer; border: none; }
         .btn:hover { background: var(--primary); }
 
+        /* Application Styling */
         .app-container { background: var(--white); padding: 2rem; border-radius: 8px; box-shadow: var(--shadow); margin-bottom: 2.5rem; }
         .iframe-wrapper { position: relative; width: 100%; height: 750px; overflow: hidden; border-radius: 4px; border: 1px solid #eee; }
 
@@ -58,7 +58,6 @@
             section { padding: 3rem 5%; }
             .iframe-wrapper { height: 500px; }
             header h1 { font-size: 2.5rem; }
-            header p { font-size: 1rem; }
         }
     </style>
 </head>
@@ -83,43 +82,37 @@
         <h2>About Me</h2>
         <div class="about-content">
             <p>For over 25 years, I've worked at the crossroads of finance, growth, and customer strategy—helping businesses turn complexity into opportunity. Whether in corporate finance, business development, or customer lifecycle management, my career has always been guided by a simple principle: the most effective solutions are those designed around real human needs.</p>
-            
-            <p>To me, solution selling is more than a professional skill—it's a mindset. It's about listening with intent, diagnosing with precision, and crafting answers that genuinely make life easier.</p>
-            
-            <p>Today, I bring that same approach to product innovation. I build web applications that solve everyday problems—born out of curiosity, a bit of experimentation, and a desire to stay hands-on and creatively engaged. I'm especially fascinated by the potential of AI and machine learning, and I'm actively sharpening my skills in this space to build smarter, more intuitive tools.</p>
-            
             <p>Check out my blog on a regular basis—I'll keep adding new tools that, hopefully, can make our lives a little easier and more productive.</p>
-
-            <p>If you're driven by a passion for building things that matter—and you believe in continuously evolving along the way—we'll likely have plenty to talk about.</p>
         </div>
     </section>
 
     <section id="portfolio">
         <h2>My Portfolio</h2>
+
         <div class="app-container">
             <div style="margin-bottom: 25px;">
                 <i class="fas fa-brain" style="color: var(--accent); font-size: 1.5rem;"></i>
                 <h3 style="display: inline; margin-left: 10px;">IDX Stock Trading Insight Engine</h3>
                 <p style="margin-top: 10px; color: #666;">A data-driven Python application leveraging Streamlit to provide interactive analytics for the Indonesia Stock Exchange.</p>
             </div>
-            ```html
+            <div class="iframe-wrapper">
+                <iframe
+                    src="https://idx-insight-engine.streamlit.app/?embed=true"
+                    style="width:100%; height:100%; border:none;"
+                    allow="camera;microphone;clipboard-read;clipboard-write;"
+                ></iframe>
+            </div>
+        </div>
+
         <div class="app-container">
             <div style="margin-bottom: 25px;">
                 <i class="fas fa-calculator" style="color: var(--accent); font-size: 1.5rem;"></i>
                 <h3 style="display: inline; margin-left: 10px;">Professional Loan Portfolio Simulator</h3>
                 <p style="margin-top: 10px; color: #666;">A comprehensive tool for calculating payments, interest rates, and generating full amortization schedules for both Flat and Effective rates.</p>
             </div>
-            <div class="iframe-wrapper" style="height: 900px;"> <iframe
+            <div class="iframe-wrapper" style="height: 950px;"> <iframe
                     src="loan-simulator.html"
                     style="width:100%; height:100%; border:none;"
-                ></iframe>
-            </div>
-        </div>
-            <div class="iframe-wrapper">
-                <iframe
-                    src="https://idx-insight-engine.streamlit.app/?embed=true"
-                    style="width:100%; height:100%; border:none;"
-                    allow="camera;microphone;clipboard-read;clipboard-write;"
                 ></iframe>
             </div>
         </div>
@@ -146,21 +139,12 @@
     <footer id="contact">
         <h2>Contact Me</h2>
         <p>Let's collaborate on the next big solution.</p>
-        
         <div class="social-icons">
-            <a href="https://www.linkedin.com/in/djebeng-wibowo-38b8a316/" target="_blank" title="LinkedIn">
-                <i class="fab fa-linkedin"></i>
-            </a>
-            <a href="mailto:djebeng@gmail.com" title="Email Me">
-                <i class="fas fa-envelope"></i>
-            </a>
+            <a href="mailto:djebeng@gmail.com" title="Email Me"><i class="fas fa-envelope"></i></a>
         </div>
-        
         <a href="mailto:djebeng@gmail.com" class="contact-email">djebeng@gmail.com</a>
-        
         <p style="font-size: 0.9rem; opacity: 0.7; margin-top: 3rem;">&copy; 2026 Djebeng Wibowo</p>
     </footer>
 
 </body>
-
 </html>
