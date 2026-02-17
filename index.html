@@ -34,6 +34,7 @@
         
         .about-content { background: var(--white); padding: 3rem; border-radius: 8px; box-shadow: var(--shadow); border-left: 8px solid var(--accent); }
         .about-content p { margin-bottom: 1.5rem; font-size: 1.15rem; color: #444; line-height: 1.8; }
+        .about-content p:last-child { margin-bottom: 0; }
         
         .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
         
@@ -58,6 +59,7 @@
             section { padding: 3rem 5%; }
             .iframe-wrapper { height: 500px; }
             header h1 { font-size: 2.5rem; }
+            header p { font-size: 1rem; }
         }
     </style>
 </head>
@@ -81,8 +83,13 @@
     <section id="about">
         <h2>About Me</h2>
         <div class="about-content">
-            <p>For over 25 years, I've worked at the crossroads of finance, growth, and customer strategy—helping businesses turn complexity into opportunity. Whether in corporate finance, business development, or customer lifecycle management, my career has always been guided by a simple principle: the most effective solutions are those designed around real human needs.</p>
-            <p>Check out my blog on a regular basis—I'll keep adding new tools that, hopefully, can make our lives a little easier and more productive.</p>
+            <p>For more than 25 years, I’ve operated at the intersection of finance, growth, and customer strategy — helping businesses transform complexity into opportunity. From corporate finance to lifecycle management and business development, my career has been driven by one core belief: the best solutions are built around real human needs.</p>
+            
+            <p>Solution selling, to me, isn’t just a professional skill — it’s a philosophy. It’s about listening deeply, diagnosing accurately, and building solutions that genuinely simplify everyday life.</p>
+            
+            <p>Today, I’m channeling that same mindset into product innovation. I build web applications that enhance my own daily routines and hobbies — small, practical tools born from curiosity and experimentation. It’s my way of staying hands-on, creative, and future-ready.</p>
+            
+            <p>If you’re passionate about building meaningful solutions and continuously evolving, we’ll likely have a lot to talk about.</p>
         </div>
     </section>
 
@@ -139,10 +146,18 @@
     <footer id="contact">
         <h2>Contact Me</h2>
         <p>Let's collaborate on the next big solution.</p>
+        
         <div class="social-icons">
-            <a href="mailto:djebeng@gmail.com" title="Email Me"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/djebeng-wibowo-38b8a316/" target="_blank" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="mailto:djebeng@gmail.com" title="Email Me">
+                <i class="fas fa-envelope"></i>
+            </a>
         </div>
+        
         <a href="mailto:djebeng@gmail.com" class="contact-email">djebeng@gmail.com</a>
+        
         <p style="font-size: 0.9rem; opacity: 0.7; margin-top: 3rem;">&copy; 2026 Djebeng Wibowo</p>
     </footer>
 
