@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-M1JF4PZ6ZB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-M1JF4PZ6ZB');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Djebeng Wibowo | Professional Portfolio</title>
@@ -44,26 +53,8 @@
         .btn { display: inline-block; margin-top: 1.5rem; padding: 0.8rem 2rem; background: var(--accent); color: var(--white); border-radius: 4px; font-weight: bold; cursor: pointer; border: none; }
         .btn:hover { background: var(--primary); }
 
-        /* Application Styling */
-        .app-container { background: var(--white); padding: 2rem; border-radius: 8px; box-shadow: var(--shadow); margin-bottom: 2.5rem; }
-        
-        .app-header { 
-            display: flex; 
-            align-items: center; 
-            margin-bottom: 15px; 
-            width: 100%;
-        }
-        
-        /* Forces title to stay in 1 row */
-        .app-title { 
-            margin-left: 10px; 
-            font-size: 1.6rem; 
-            font-weight: 600; 
-            color: var(--primary); 
-            white-space: nowrap; 
-        }
-
-        .iframe-wrapper { position: relative; width: 100%; height: 800px; overflow: hidden; border-radius: 4px; border: 1px solid #eee; }
+        .app-container { background: var(--white); padding: 2rem; border-radius: 8px; box-shadow: var(--shadow); margin-bottom: 4rem; }
+        .iframe-wrapper { position: relative; width: 100%; height: 750px; overflow: hidden; border-radius: 4px; border: 1px solid #eee; }
 
         footer { background: var(--primary); color: var(--white); text-align: center; padding: 5rem 1rem; margin-top: 4rem; }
         .social-icons { margin: 1.5rem 0; }
@@ -74,9 +65,9 @@
         @media (max-width: 768px) {
             .nav-links { display: none; }
             section { padding: 3rem 5%; }
-            .iframe-wrapper { height: 600px; }
+            .iframe-wrapper { height: 500px; }
             header h1 { font-size: 2.5rem; }
-            .app-title { white-space: normal; font-size: 1.3rem; }
+            header p { font-size: 1rem; }
         }
     </style>
 </head>
@@ -101,13 +92,9 @@
         <h2>About Me</h2>
         <div class="about-content">
             <p>For over 25 years, I've worked at the crossroads of finance, growth, and customer strategy—helping businesses turn complexity into opportunity. Whether in corporate finance, business development, or customer lifecycle management, my career has always been guided by a simple principle: the most effective solutions are those designed around real human needs.</p>
-            
             <p>To me, solution selling is more than a professional skill—it's a mindset. It's about listening with intent, diagnosing with precision, and crafting answers that genuinely make life easier.</p>
-            
             <p>Today, I bring that same approach to product innovation. I build web applications that solve everyday problems—born out of curiosity, a bit of experimentation, and a desire to stay hands-on and creatively engaged. I'm especially fascinated by the potential of AI and machine learning, and I'm actively sharpening my skills in this space to build smarter, more intuitive tools.</p>
-            
             <p>Check out my blog on a regular basis—I'll keep adding new tools that, hopefully, can make our lives a little easier and more productive.</p>
-
             <p>If you're driven by a passion for building things that matter—and you believe in continuously evolving along the way—we'll likely have plenty to talk about.</p>
         </div>
     </section>
@@ -116,11 +103,11 @@
         <h2>My Portfolio</h2>
 
         <div class="app-container">
-            <div class="app-header">
-                <i class="fas fa-brain" style="color: var(--accent); font-size: 1.5rem;"></i>
-                <h3 class="app-title">IDX Stock Trading Insight Engine</h3>
+            <div style="margin-bottom: 25px;">
+                <i class="fas fa-chart-line" style="color: var(--accent); font-size: 1.5rem;"></i>
+                <h3 style="display: inline; margin-left: 10px;">IDX Stock Trading Insight Engine</h3>
+                <p style="margin-top: 10px; color: #666;">A data-driven Python application providing interactive analytics for the Indonesia Stock Exchange.</p>
             </div>
-            <p style="margin-top: 10px; color: #666; margin-bottom: 20px;">A data-driven Python application leveraging Streamlit to provide interactive analytics for the Indonesia Stock Exchange.</p>
             <div class="iframe-wrapper">
                 <iframe
                     src="https://idx-insight-engine.streamlit.app/?embed=true"
@@ -131,15 +118,18 @@
         </div>
 
         <div class="app-container">
-            <div class="app-header">
+            <div style="margin-bottom: 25px;">
                 <i class="fas fa-calculator" style="color: var(--accent); font-size: 1.5rem;"></i>
-                <h3 class="app-title">Professional Loan Portfolio Simulator</h3>
+                <h3 style="display: inline; margin-left: 10px;">Comprehensive Loan Simulator</h3>
+                <p style="margin-top: 10px; color: #666;">
+                    Calculate payments, interest, or tenors with full amortization schedules. Supporting <strong>Effective interest</strong> (for Home loans) and <strong>Flat interest</strong> methodologies (typically used for Personal loans).
+                </p>
             </div>
-            <p style="margin-top: 10px; color: #666; margin-bottom: 20px;">A comprehensive tool for calculating payments, interest rates, and generating full amortization schedules for both Flat and Effective rates.</p>
-            <div class="iframe-wrapper" style="height: 950px;">
+            <div class="iframe-wrapper">
                 <iframe
-                    src="https://djebengwibowo.github.io/myblog/loan-simulator.html"
+                    src="https://loan-simulator.streamlit.app/?embed=true" 
                     style="width:100%; height:100%; border:none;"
+                    allow="camera;microphone;clipboard-read;clipboard-write;"
                 ></iframe>
             </div>
         </div>
@@ -166,18 +156,15 @@
     <footer id="contact">
         <h2>Contact Me</h2>
         <p>Let's collaborate on the next big solution.</p>
-        
         <div class="social-icons">
             <a href="https://www.linkedin.com/in/djebeng-wibowo-38b8a316/" target="_blank" title="LinkedIn">
                 <i class="fab fa-linkedin"></i>
             </a>
-            <a href="mailto:djebeng@gmail.com" title="Email Me">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=djebeng@gmail.com" target="_blank" title="Email Me">
                 <i class="fas fa-envelope"></i>
             </a>
         </div>
-        
         <a href="mailto:djebeng@gmail.com" class="contact-email">djebeng@gmail.com</a>
-        
         <p style="font-size: 0.9rem; opacity: 0.7; margin-top: 3rem;">&copy; 2026 Djebeng Wibowo</p>
     </footer>
 
