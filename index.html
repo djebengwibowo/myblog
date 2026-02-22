@@ -109,31 +109,82 @@
         <p style="margin-top: 10px; color: #666;">A data-driven Python application providing interactive analytics for the Indonesia Stock Exchange.</p>
     </div>
 
-    <div style="background-color: #fffde7; border: 1px solid #fff59d; border-radius: 8px; padding: 15px; margin-bottom: 25px;">
-        <h4 style="color: #fbc02d; margin-bottom: 12px; font-size: 1rem;"><i class="fas fa-lightbulb"></i> Quick Start Guide</h4>
-        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px;">
-            <div style="background: white; padding: 10px 5px; border-radius: 6px; border: 1px solid #eee; text-align: center;">
-                <strong style="color: var(--accent); font-size: 0.75rem; display: block; margin-bottom: 4px;">1. Language</strong>
-                <p style="font-size: 0.7rem; color: #555; line-height: 1.2;">Choose the language.</p>
-            </div>
-            <div style="background: white; padding: 10px 5px; border-radius: 6px; border: 1px solid #eee; text-align: center;">
-                <strong style="color: var(--accent); font-size: 0.75rem; display: block; margin-bottom: 4px;">2. Stock Code</strong>
-                <p style="font-size: 0.7rem; color: #555; line-height: 1.2;">Key-in the stock code.</p>
-            </div>
-            <div style="background: white; padding: 10px 5px; border-radius: 6px; border: 1px solid #eee; text-align: center;">
-                <strong style="color: var(--accent); font-size: 0.75rem; display: block; margin-bottom: 4px;">3. Status</strong>
-                <p style="font-size: 0.7rem; color: #555; line-height: 1.2;">Own these stocks?</p>
-            </div>
-            <div style="background: white; padding: 10px 5px; border-radius: 6px; border: 1px solid #eee; text-align: center;">
-                <strong style="color: var(--accent); font-size: 0.75rem; display: block; margin-bottom: 4px;">4. Process</strong>
-                <p style="font-size: 0.7rem; color: #555; line-height: 1.2;">Run deep analysis.</p>
-            </div>
-            <div style="background: white; padding: 10px 5px; border-radius: 6px; border: 1px solid #eee; text-align: center;">
-                <strong style="color: var(--accent); font-size: 0.75rem; display: block; margin-bottom: 4px;">5. Output</strong>
-                <p style="font-size: 0.7rem; color: #555; line-height: 1.2;">See recommendation.</p>
-            </div>
+<style>
+    .guide-container {
+        background-color: #fffde7;
+        border: 1px solid #fff59d;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 25px;
+    }
+    .guide-title {
+        color: #fbc02d;
+        margin-bottom: 12px;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+    .steps-wrapper {
+        display: flex;
+        gap: 8px;
+        /* Mobile Default: Stacked vertically like Loan Simulator */
+        flex-direction: column;
+    }
+    .step-card {
+        background: white;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #eee;
+        flex: 1;
+    }
+    .step-card strong {
+        color: var(--accent);
+        font-size: 0.75rem;
+        display: block;
+        margin-bottom: 4px;
+    }
+    .step-card p {
+        font-size: 0.7rem;
+        color: #555;
+        line-height: 1.2;
+        margin: 0;
+    }
+
+    /* Desktop Logic: Switch back to 1 row on Laptops */
+    @media (min-width: 768px) {
+        .steps-wrapper {
+            flex-direction: row;
+        }
+        .step-card {
+            text-align: center;
+        }
+    }
+</style>
+
+<div class="guide-container">
+    <div class="guide-title"><i class="fas fa-lightbulb"></i> Quick Start Guide</div>
+    <div class="steps-wrapper">
+        <div class="step-card">
+            <strong>1. Language</strong>
+            <p>Choose the language.</p>
+        </div>
+        <div class="step-card">
+            <strong>2. Stock Code</strong>
+            <p>Key-in the stock code.</p>
+        </div>
+        <div class="step-card">
+            <strong>3. Status</strong>
+            <p>Own these stocks?</p>
+        </div>
+        <div class="step-card">
+            <strong>4. Process</strong>
+            <p>Run deep analysis.</p>
+        </div>
+        <div class="step-card">
+            <strong>5. Output</strong>
+            <p>See recommendation.</p>
         </div>
     </div>
+</div> 
 
     <div class="iframe-wrapper">
         <iframe
@@ -197,3 +248,4 @@
 
 </body>
 </html>
+
