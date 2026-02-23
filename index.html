@@ -43,46 +43,52 @@
         .about-content { background: var(--white); padding: 3rem; border-radius: 8px; box-shadow: var(--shadow); border-left: 8px solid var(--accent); }
         .about-content p { margin-bottom: 1.5rem; font-size: 1.15rem; color: #444; line-height: 1.8; }
         
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-        
         .card { background: var(--white); padding: 2.5rem; border-radius: 8px; box-shadow: var(--shadow); transition: transform 0.2s; }
         .card:hover { transform: translateY(-5px); }
         .card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 1rem; }
         .btn { display: inline-block; margin-top: 1.5rem; padding: 0.8rem 2rem; background: var(--accent); color: var(--white); border-radius: 4px; font-weight: bold; cursor: pointer; border: none; }
         .btn:hover { background: var(--primary); }
 
-        .app-container { background: var(--white); padding: 2rem; border-radius: 8px; box-shadow: var(--shadow); margin-bottom: 4rem; }
+        .app-container { background: var(--white); padding: 1.5rem; border-radius: 8px; box-shadow: var(--shadow); margin-bottom: 3.5rem; overflow: hidden; }
+        .app-header { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; width: 100%; }
+        .app-header i { color: var(--accent); font-size: 1.3rem; flex-shrink: 0; }
+        .app-header h3 { margin: 0; font-size: 1.4rem; color: var(--primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
         .iframe-wrapper { position: relative; width: 100%; height: 750px; overflow: hidden; border-radius: 4px; border: 1px solid #eee; }
 
-        /* Quick Start Guide Styles */
-        .guide-container { background-color: #fffde7; border: 1px solid #fff59d; border-radius: 8px; padding: 15px; margin-bottom: 25px; }
-        .guide-title { color: #fbc02d; margin-bottom: 12px; font-size: 1rem; font-weight: bold; }
-        .steps-wrapper { display: flex; gap: 8px; flex-direction: column; }
-        .step-card { background: white; padding: 10px; border-radius: 6px; border: 1px solid #eee; flex: 1; }
-        .step-card strong { color: var(--accent); font-size: 0.75rem; display: block; margin-bottom: 4px; }
-        .step-card p { font-size: 0.7rem; color: #555; line-height: 1.2; margin: 0; }
+        /* Guide Styling */
+        .guide-container { background-color: #fffde7; border: 1px solid #fff59d; border-radius: 8px; padding: 12px; margin-bottom: 20px; width: 100%; }
+        .guide-title { color: #fbc02d; margin-bottom: 10px; font-size: 0.9rem; font-weight: bold; }
+        .steps-wrapper { display: grid; grid-template-columns: 1fr; gap: 8px; width: 100%; }
+        .step-card { background: white; padding: 8px; border-radius: 6px; border: 1px solid #eee; width: 100%; }
+        .step-card strong { color: var(--accent); font-size: 0.7rem; display: block; margin-bottom: 2px; }
+        .step-card p { font-size: 0.65rem; color: #555; line-height: 1.2; }
 
         .zakat-guide { background-color: #f1f8e9; border: 1px solid #c8e6c9; }
         .zakat-guide-title { color: #2e7d32; }
 
         @media (min-width: 768px) {
-            .steps-wrapper { flex-direction: row; }
-            .step-card { text-align: center; }
+            .steps-wrapper { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); text-align: center; }
+            .app-container { padding: 2.5rem; }
+            .app-header h3 { font-size: 1.6rem; }
         }
-
-        footer { background: var(--primary); color: var(--white); text-align: center; padding: 5rem 1rem; margin-top: 4rem; }
-        .social-icons { margin: 1.5rem 0; }
-        .social-icons a { margin: 0 20px; font-size: 2.2rem; opacity: 0.8; cursor: pointer; }
-        .social-icons a:hover { opacity: 1; color: var(--accent); }
-        .contact-email { font-size: 1.3rem; color: var(--accent); font-weight: 500; display: block; margin-bottom: 1.5rem; letter-spacing: 0.5px; }
 
         @media (max-width: 768px) {
             .nav-links { display: none; }
-            section { padding: 3rem 5%; }
-            .iframe-wrapper { height: 500px; }
-            header h1 { font-size: 2.5rem; }
-            header p { font-size: 1rem; }
+            section { padding: 2rem 4%; }
+            .iframe-wrapper { height: 600px; }
+            header { padding: 4rem 1rem; }
+            header h1 { font-size: 2.1rem; }
+            header p { font-size: 0.95rem; }
+            .app-header h3 { font-size: 1.15rem; } /* Smaller font to keep on one line */
+            .app-container { padding: 1.2rem; }
+            .guide-container { padding: 10px; }
         }
+
+        footer { background: var(--primary); color: var(--white); text-align: center; padding: 4rem 1rem; margin-top: 4rem; }
+        .social-icons { margin: 1.5rem 0; }
+        .social-icons a { margin: 0 15px; font-size: 2rem; opacity: 0.8; }
+        .contact-email { font-size: 1.1rem; color: var(--accent); font-weight: 500; display: block; margin-bottom: 1rem; }
     </style>
 </head>
 <body>
@@ -92,7 +98,6 @@
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#career">Career</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
@@ -106,10 +111,7 @@
         <h2>About Me</h2>
         <div class="about-content">
             <p>For over 25 years, I've worked at the crossroads of finance, growth, and customer strategy—helping businesses turn complexity into opportunity. Whether in corporate finance, business development, or customer lifecycle management, my career has always been guided by a simple principle: the most effective solutions are those designed around real human needs.</p>
-            <p>To me, solution selling is more than a professional skill—it's a mindset. It's about listening with intent, diagnosing with precision, and crafting answers that genuinely make life easier.</p>
-            <p>Today, I bring that same approach to product innovation. I build web applications that solve everyday problems—born out of curiosity, a bit of experimentation, and a desire to stay hands-on and creatively engaged. I'm especially fascinated by the potential of AI and machine learning, and I'm actively sharpening my skills in this space to build smarter, more intuitive tools.</p>
-            <p>Check out my blog on a regular basis—I'll keep adding new tools that, hopefully, can make our lives a little easier and more productive.</p>
-            <p>If you're driven by a passion for building things that matter—and you believe in continuously evolving along the way—we'll likely have plenty to talk about.</p>
+            <p>Today, I build web applications that solve everyday problems—born out of curiosity, experimentation, and a desire to stay hands-on. I'm especially fascinated by the potential of AI and machine learning to build smarter, more intuitive tools.</p>
         </div>
     </section>
 
@@ -117,20 +119,20 @@
         <h2>My Portfolio</h2>
 
         <div class="app-container">
-            <div style="margin-bottom: 25px;">
-                <i class="fas fa-chart-line" style="color: var(--accent); font-size: 1.5rem;"></i>
-                <h3 style="display: inline; margin-left: 10px;">IDX Stock Trading Insight Engine</h3>
-                <p style="margin-top: 10px; color: #666;">A data-driven Python application providing interactive analytics for the Indonesia Stock Exchange.</p>
+            <div class="app-header">
+                <i class="fas fa-chart-line"></i>
+                <h3>IDX Stock Insight Engine</h3>
             </div>
+            <p style="margin-bottom: 15px; color: #666; font-size: 0.9rem;">Interactive analytics for the Indonesia Stock Exchange.</p>
 
             <div class="guide-container">
                 <div class="guide-title"><i class="fas fa-lightbulb"></i> Quick Start Guide</div>
                 <div class="steps-wrapper">
                     <div class="step-card"><strong>1. Language</strong><p>Choose the language.</p></div>
-                    <div class="step-card"><strong>2. Stock Code</strong><p>Key-in the stock code.</p></div>
+                    <div class="step-card"><strong>2. Stock Code</strong><p>Key-in the code.</p></div>
                     <div class="step-card"><strong>3. Status</strong><p>Own these stocks?</p></div>
-                    <div class="step-card"><strong>4. Process</strong><p>Run deep analysis.</p></div>
-                    <div class="step-card"><strong>5. Output</strong><p>See recommendation.</p></div>
+                    <div class="step-card"><strong>4. Process</strong><p>Run analysis.</p></div>
+                    <div class="step-card"><strong>5. Output</strong><p>Get recommendation.</p></div>
                 </div>
             </div> 
 
@@ -140,25 +142,32 @@
         </div>
 
         <div class="app-container">
-            <div style="margin-bottom: 25px;">
-                <i class="fas fa-calculator" style="color: var(--accent); font-size: 1.5rem;"></i>
-                <h3 style="display: inline; margin-left: 10px;">Comprehensive Loan Simulator</h3>
-                <p style="margin-top: 10px; color: #666;">Calculate payments, interest, or tenors with full amortization schedules. Supporting Effective and Flat interest methodologies.</p>
+            <div class="app-header">
+                <i class="fas fa-calculator"></i>
+                <h3>Comprehensive Loan Simulator</h3>
             </div>
+            <p style="margin-bottom: 15px; color: #666; font-size: 0.9rem;">Amortization schedules using Effective and Flat methodologies.</p>
+            
+            <div class="guide-container">
+                <div class="guide-title"><i class="fas fa-lightbulb"></i> Quick Start Guide</div>
+                <div class="steps-wrapper">
+                    <div class="step-card"><strong>1. Select Goal</strong><p>Input target loan details.</p></div>
+                    <div class="step-card"><strong>2. Interest Method</strong><p>Choose Flat or Effective.</p></div>
+                    <div class="step-card"><strong>3. Analyze Result</strong><p>Review the payment plan.</p></div>
+                </div>
+            </div>
+
             <div class="iframe-wrapper">
-                <iframe
-                    src="loan-simulator.html" 
-                    style="width:100%; height:100%; border:none;"
-                ></iframe>
+                <iframe src="loan-simulator.html" style="width:100%; height:100%; border:none;"></iframe>
             </div>
         </div>
 
         <div class="app-container">
-            <div style="margin-bottom: 25px;">
-                <i class="fas fa-hand-holding-heart" style="color: var(--accent); font-size: 1.5rem;"></i>
-                <h3 style="display: inline; margin-left: 10px;">Zakat Calculation App</h3>
-                <p style="margin-top: 10px; color: #666;">A multi-language tool for calculating various types of Zakat including Maal, Profession, Agriculture, and Fitrah.</p>
+            <div class="app-header">
+                <i class="fas fa-hand-holding-heart"></i>
+                <h3>Zakat Calculation App</h3>
             </div>
+            <p style="margin-bottom: 15px; color: #666; font-size: 0.9rem;">Multi-language tool for Maal, Profession, Agriculture, and Fitrah.</p>
 
             <div class="guide-container zakat-guide">
                 <div class="guide-title zakat-guide-title"><i class="fas fa-lightbulb"></i> Quick Start Guide</div>
@@ -166,48 +175,24 @@
                     <div class="step-card"><strong>1. Language</strong><p>Select language.</p></div>
                     <div class="step-card"><strong>2. Category</strong><p>Choose Zakat type.</p></div>
                     <div class="step-card"><strong>3. Values</strong><p>Input wealth totals.</p></div>
-                    <div class="step-card"><strong>4. Result</strong><p>View calculation result.</p></div>
+                    <div class="step-card"><strong>4. Result</strong><p>View calculation.</p></div>
                 </div>
             </div>
 
             <div class="iframe-wrapper" style="height: 850px;">
-                <iframe 
-                    src="zakat-app.html" 
-                    style="width:100%; height:100%; border:none;"
-                ></iframe>
-            </div>
-        </div>
-
-    </section>
-
-    <section id="career">
-        <h2>Career Journey</h2>
-        <div class="grid-container">
-            <div class="card">
-                <i class="fas fa-file-invoice"></i>
-                <h3>Curriculum Vitae</h3>
-                <p>Detailed professional history covering 25+ years of strategic leadership and transformation.</p>
-                <a href="https://djebeng.wixsite.com/resume" target="_blank" class="btn">View Resume</a>
-            </div>
-            <div class="card">
-                <i class="fab fa-linkedin-in"></i>
-                <h3>LinkedIn Profile</h3>
-                <p>Connect with me for industry insights and professional collaborations.</p>
-                <a href="https://www.linkedin.com/in/djebeng-wibowo-38b8a316/" target="_blank" class="btn">View LinkedIn</a>
+                <iframe src="zakat-app.html" style="width:100%; height:100%; border:none;"></iframe>
             </div>
         </div>
     </section>
 
     <footer id="contact">
         <h2>Contact Me</h2>
-        <p>Let's collaborate on the next big solution.</p>
         <div class="social-icons">
-            <a href="https://www.linkedin.com/in/djebeng-wibowo-38b8a316/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=djebeng@gmail.com" target="_blank" title="Email Me"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/djebeng-wibowo-38b8a316/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:djebeng@gmail.com"><i class="fas fa-envelope"></i></a>
         </div>
-        <a href="mailto:djebeng@gmail.com" class="contact-email">djebeng@gmail.com</a>
-        <p style="font-size: 0.9rem; opacity: 0.7; margin-top: 3rem;">&copy; 2026 Djebeng Wibowo</p>
+        <span class="contact-email">djebeng@gmail.com</span>
+        <p style="font-size: 0.8rem; opacity: 0.6;">&copy; 2026 Djebeng Wibowo</p>
     </footer>
-
 </body>
 </html>
