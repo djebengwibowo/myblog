@@ -3,258 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zakat Calculator Pro</title>
+    <title>Kalkulator Zakat - Djebeng Wibowo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; color: #333; line-height: 1.6; padding: 20px; }
-        .container { max-width: 900px; margin: auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        h1, h2 { color: #2c3e50; text-align: center; }
-        .form-group { margin-bottom: 20px; padding: 15px; background: #fafafa; border: 1px solid #eee; border-radius: 5px; }
-        label { display: block; font-weight: bold; margin-bottom: 8px; color: #34495e; }
-        select, input[type="number"] { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 16px; }
-        button { width: 100%; padding: 14px; background: #27ae60; color: white; border: none; border-radius: 5px; font-size: 18px; cursor: pointer; font-weight: bold; margin-top: 10px; transition: 0.3s; }
-        button:hover { background: #219653; }
-        .result-box { margin-top: 20px; padding: 20px; background: #e8f8f5; border-left: 5px solid #27ae60; display: none; }
-        .dalil-box { margin-top: 20px; padding: 20px; background: #fdfefe; border: 1px solid #d5dbdb; border-radius: 5px; display: none; }
-        .arabic { font-size: 26px; text-align: right; font-family: 'Amiri', 'Scheherazade', serif; margin-bottom: 10px; color: #2c3e50; direction: rtl; }
-        .note { font-size: 0.9em; color: #7f8c8d; margin-top: 5px; }
-        .radio-group { display: flex; gap: 15px; margin-top: 10px; }
+        :root { --nusuk-gold: #c5a059; --nusuk-green: #0b4a3f; --nusuk-bg: #f9f7f2; --white: #ffffff; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--nusuk-bg); margin: 0; padding: 20px 15px; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; overflow-x: hidden; position: relative; }
+        
+        .bg-animate { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background: linear-gradient(135deg, #f9f7f2 0%, #ece5d5 100%); }
+        .floating-icon { position: absolute; opacity: 0.6; animation: floatUp 15s infinite linear; filter: drop-shadow(0 0 10px rgba(197, 160, 89, 0.4)); z-index: -1; }
+        @keyframes floatUp { 0% { transform: translateY(110vh) rotate(0deg); opacity: 0; } 10% { opacity: 0.6; } 90% { opacity: 0.6; } 100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; } }
+
+        .container { width: 100%; max-width: 500px; background: var(--white); border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.08); padding: 25px 20px; border-top: 8px solid var(--nusuk-gold); position: relative; z-index: 5; margin-top: 20px; }
+        header { text-align: center; margin-bottom: 20px; }
+        h1 { color: var(--nusuk-green); font-size: 1.6rem; margin: 0; font-weight: 800; letter-spacing: -0.5px; }
+
+        .form-section { background: #fafafa; padding: 15px; border-radius: 14px; border: 1px solid #f0f0f0; margin-bottom: 12px; }
+        label { display: block; margin-bottom: 6px; font-weight: 600; color: var(--nusuk-green); font-size: 0.8rem; }
+        select, input { width: 100%; padding: 12px; border: 1.5px solid #e8e8e8; border-radius: 10px; font-size: 0.9rem; box-sizing: border-box; appearance: none; background-color: white; }
+
+        button { width: 100%; padding: 15px; background: var(--nusuk-green); color: white; border: none; border-radius: 12px; font-size: 1rem; font-weight: 700; cursor: pointer; margin-top: 5px; transition: 0.3s; box-shadow: 0 4px 15px rgba(11, 74, 63, 0.2); }
+        button:hover { background: #08362e; transform: translateY(-1px); }
+
+        .result-card { background: #fdfaf3; border: 1.5px solid #f1e6cf; border-radius: 16px; padding: 20px; margin-top: 25px; animation: fadeIn 0.5s ease; display: none; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .total-amount { font-size: 1.8rem; color: var(--nusuk-green); font-weight: 800; text-align: center; margin: 10px 0; word-wrap: break-word; }
+        .arabic { font-family: 'Amiri', serif; font-size: 1.1rem; text-align: center; direction: rtl; line-height: 1.6; margin-bottom: 12px; color: var(--nusuk-green); padding: 0 5px; }
+        .translation { font-style: italic; font-size: 0.75rem; color: #555; text-align: center; margin-bottom: 8px; line-height: 1.5; }
+        .source-tag { font-weight: 700; color: var(--nusuk-gold); font-size: 0.7rem; text-align: center; display: block; text-transform: uppercase; margin-bottom: 15px; }
+        
+        .rule-box { border-top: 1px dashed #dcc7a1; padding-top: 12px; margin-top: 5px; text-align: center; }
+        .rule-tag { font-size: 0.65rem; color: var(--nusuk-green); font-weight: 700; background: #eee5d3; padding: 3px 8px; border-radius: 20px; display: inline-block; margin-bottom: 4px; }
+        .rule-text { font-size: 0.75rem; color: #444; display: block; font-weight: 500; }
+
+        .copyright { text-align: center; margin-top: 20px; font-size: 0.7rem; color: #999; font-weight: 500; padding-bottom: 10px; }
+        .copyright a { color: #999; text-decoration: none; border-bottom: 1px solid transparent; }
     </style>
 </head>
 <body>
+    <div class="bg-animate" id="bgLayer"></div>
+    <div class="container">
+        <header>
+            <h1 id="appTitle">Kalkulator Zakat</h1>
+        </header>
 
-<div class="container">
-    <h1 id="appTitle">Kalkulator Zakat Komprehensif</h1>
-
-    <div class="form-group">
-        <label id="lblLang" for="language">1. Pilih Bahasa / Select Language:</label>
-        <select id="language" onchange="changeLanguage()">
-            <option value="id">Bahasa Indonesia</option>
-            <option value="en">English</option>
-            <option value="zh">中文 (Chinese)</option>
-            <option value="fr">Français (French)</option>
-            <option value="es">Español (Spanish)</option>
-            <option value="de">Deutsch (German)</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label id="lblType" for="zakatType">2. Pilih Jenis Zakat:</label>
-        <select id="zakatType" onchange="toggleInputs()">
-            <option value="">-- Pilih / Select --</option>
-            <option value="emas_uang">1 & 2. Zakat Emas, Perak, Uang & Surat Berharga</option>
-            <option value="tijarah">3. Zakat Perniagaan (Tijarah)</option>
-            <option value="zuru">4. Zakat Pertanian (Zuru')</option>
-            <option value="anam">5. Zakat Peternakan (An'am)</option>
-            <option value="profesi">6. Zakat Profesi / Penghasilan</option>
-            <option value="rikaz">7. Zakat Barang Temuan (Rikaz)</option>
-            <option value="tambang">8. Zakat Hasil Tambang (Ma'din)</option>
-            <option value="fitrah">9. Zakat Fitrah</option>
-        </select>
-    </div>
-
-    <div id="inputsContainer">
-        
-        <div id="inputStandard" class="form-group" style="display:none;">
-            <label id="lblStandardValue">Masukkan Total Nilai Harta (Uang/Aset/Emas/Temuan):</label>
-            <input type="number" id="standardValue" placeholder="0">
-            <div class="note" id="noteStandard">Pastikan harta telah mencapai nisab dan haul (jika disyaratkan).</div>
-        </div>
-
-        <div id="inputPertanian" class="form-group" style="display:none;">
-            <label id="lblTaniValue">Masukkan Nilai / Estimasi Harga Panen:</label>
-            <input type="number" id="taniValue" placeholder="0">
-            <label id="lblIrigasi" style="margin-top:15px;">Jenis Pengairan / Irigasi:</label>
-            <div class="radio-group">
-                <input type="radio" id="irigasiAlami" name="irigasi" value="0.10" checked>
-                <label for="irigasiAlami" id="lblAlami">Alami (Tadah Hujan / Sungai) - 10%</label>
-                
-                <input type="radio" id="irigasiBuatan" name="irigasi" value="0.05">
-                <label for="irigasiBuatan" id="lblBuatan">Buatan (Irigasi Berbiaya) - 5%</label>
-            </div>
-            <div class="note" id="noteTani">Nisab: Setara 653 kg gabah kering / 520 kg beras. Tanpa Haul.</div>
-        </div>
-
-        <div id="inputTernak" class="form-group" style="display:none;">
-            <label id="lblTernakType">Pilih Jenis Hewan Ternak:</label>
-            <select id="ternakType">
-                <option value="kambing">Kambing / Domba</option>
-                <option value="sapi">Sapi / Kerbau</option>
+        <div class="form-section">
+            <label id="lblLang">1. Pilih Bahasa / Select Language</label>
+            <select id="language" onchange="updateUI()">
+                <option value="id">Bahasa Indonesia</option>
+                <option value="en">English</option>
+                <option value="zh">中文 (Chinese)</option>
+                <option value="fr">Français (French)</option>
+                <option value="de">Deutsch (German)</option>
+                <option value="es">Español (Spanish)</option>
             </select>
-            <label id="lblTernakCount" style="margin-top:15px;">Jumlah Ekor Hewan:</label>
-            <input type="number" id="ternakCount" placeholder="0">
-            <div class="note" id="noteTernak">Syarat: Digembalakan di padang rumput umum dan mencapai haul.</div>
         </div>
 
-        <div id="inputFitrah" class="form-group" style="display:none;">
-            <label id="lblFitrahPerson">Jumlah Anggota Keluarga:</label>
-            <input type="number" id="personCount" placeholder="0">
-            <label id="lblFitrahPrice" style="margin-top:15px;">Harga Beras/Makanan Pokok per Kg:</label>
-            <input type="number" id="ricePrice" placeholder="0">
+        <div class="form-section">
+            <label id="lblType">2. Pilih Jenis Zakat</label>
+            <select id="zakatType" onchange="toggleInputs()">
+                <option value="">-- Pilih Jenis Zakat --</option>
+                <option value="fitrah">Zakat Fitrah</option>
+                <option value="maal">Zakat Maal (Tabungan/Uang)</option>
+                <option value="emas">Zakat Emas & Perak</option>
+                <option value="tijarah">Zakat Perdagangan</option>
+                <option value="zuru">Zakat Pertanian</option>
+                <option value="rikaz">Zakat Rikaz (Temuan 20%)</option>
+                <option value="profesi">Zakat Profesi (Gaji)</option>
+            </select>
         </div>
 
+        <div id="dynamicInputs" class="form-section" style="display:none;">
+            <div id="fitrahFields" style="display:none;">
+                <label id="lblPrice">Harga Beras per Kg</label>
+                <input type="number" id="ricePrice" placeholder="0">
+                <label id="lblSoul" style="margin-top:10px;">Jumlah Orang (Jiwa)</label>
+                <input type="number" id="soulCount" placeholder="0">
+            </div>
+            <div id="otherFields" style="display:none;">
+                <label id="lblValue">Total Nilai Harta / Hasil</label>
+                <input type="number" id="totalValue" placeholder="0">
+            </div>
+        </div>
+
+        <button id="btnCalc" onclick="calculateZakat()">Hitung Zakat</button>
+
+        <div id="resultBox" class="result-card">
+            <div id="resTotal" class="total-amount"></div>
+            <div id="resArabic" class="arabic"></div>
+            <div id="resTrans" class="translation"></div>
+            <div id="resSource" class="source-tag"></div>
+            
+            <div class="rule-box">
+                <span id="lblRule" class="rule-tag">Nisab & Haul</span>
+                <span id="resRule" class="rule-text"></span>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            © 2026 <a href="https://djebengwibowo.github.io/myblog/#about" target="_blank">Djebeng Wibowo</a>. All Right Reserved.
+        </div>
     </div>
-
-    <button id="btnCalculate" onclick="calculateZakat()">Hitung Zakat</button>
-
-    <div id="resultBox" class="result-box">
-        <h2 id="resTitle">Hasil Penghitungan</h2>
-        <p><strong id="resFormulaTxt">Rumus / Kadar:</strong> <span id="resFormula"></span></p>
-        <p><strong id="resTotalTxt">Total Kewajiban Zakat:</strong> <span id="resTotal" style="font-size: 22px; color: #27ae60; font-weight:bold;"></span></p>
-    </div>
-
-    <div id="dalilBox" class="dalil-box">
-        <h2 id="dalilTitle">Dalil Al-Quran & Hadits</h2>
-        <div id="dalilContent"></div>
-    </div>
-
-</div>
 
 <script>
-    // Dictionary disederhanakan untuk UI utama
-    const dict = {
-        'id': { title: "Kalkulator Zakat Komprehensif", btn: "Hitung Zakat", resTitle: "Hasil Penghitungan", resForm: "Kadar / Rumus:", resTot: "Total Zakat:", dalil: "Dalil Al-Quran & Hadits" },
-        'en': { title: "Comprehensive Zakat Calculator", btn: "Calculate Zakat", resTitle: "Calculation Result", resForm: "Rate / Formula:", resTot: "Total Zakat Due:", dalil: "Quran & Hadith Evidences" },
-        'zh': { title: "综合天课计算器", btn: "计算天课", resTitle: "计算结果", resForm: "比率/公式:", resTot: "应付天课总额:", dalil: "古兰经和圣训证据" },
-        'fr': { title: "Calculatrice de Zakat Complète", btn: "Calculer la Zakat", resTitle: "Résultat du Calcul", resForm: "Taux / Formule:", resTot: "Zakat Totale:", dalil: "Preuves Coran & Hadith" },
-        'es': { title: "Calculadora de Zakat Completa", btn: "Calcular Zakat", resTitle: "Resultado del Cálculo", resForm: "Tasa / Fórmula:", resTot: "Zakat Total:", dalil: "Evidencias Corán y Hadiz" },
-        'de': { title: "Umfassender Zakat-Rechner", btn: "Zakat Berechnen", resTitle: "Berechnungsergebnis", resForm: "Rate / Formel:", resTot: "Gesamte Zakat:", dalil: "Koran & Hadith Beweise" }
+    // Konfigurasi Google Analytics (gtag) jika diperlukan
+    // function trackEvent(type, lang) {
+    //     if (typeof gtag === 'function') {
+    //         gtag('event', 'calculate_click', {'zakat_type': type, 'language': lang});
+    //     }
+    // }
+
+    const zakatData = {
+        id: {
+            title: "Kalkulator Zakat", btn: "Hitung Zakat", soul: "Jumlah Orang (Jiwa)", price: "Harga Beras per Kg", value: "Total Nilai Harta", curr: "IDR", locale: "id-ID", ruleLabel: "Nisab & Haul",
+            fitrah: { tr: "Rasulullah ﷺ mewajibkan zakat fitrah sebanyak satu sha' kurma atau satu sha' gandum atas hamba sahaya, orang merdeka, laki-laki, perempuan, kecil maupun besar dari kalangan kaum Muslimin.", src: "HR. BUKHARI NO. 1503 & MUSLIM NO. 984", rule: "Nisab: Per Jiwa | Haul: Ramadhan (Sebelum Idul Fitri)" },
+            maal: { tr: "Ambillah zakat dari harta mereka guna membersihkan dan mensucikan mereka, dan berdoalah untuk mereka. Sesungguhnya doamu itu (menumbuhkan) ketenteraman jiwa bagi mereka.", src: "QS. AT-TAWBAH: 103", rule: "Nisab: 85g Emas | Haul: 1 Tahun" },
+            emas: { tr: "Dan orang-orang yang menyimpan emas dan perak dan tidak menginfakkannya di jalan Allah, maka berikanlah kabar gembira kepada mereka bahwa mereka akan mendapat azab yang pedih.", src: "QS. AT-TAWBAH: 34", rule: "Nisab: 85g Emas / 595g Perak | Haul: 1 Tahun" },
+            tijarah: { tr: "Wahai orang-orang yang beriman! Nafkahkanlah sebagian dari hasil usahamu yang baik-baik dan sebagian dari apa yang Kami keluarkan dari bumi untukmu.", src: "QS. AL-BAQARAH: 267", rule: "Nisab: 85g Emas | Haul: 1 Tahun" },
+            zuru: { tr: "Dan Dialah yang menjadikan kebun-kebun yang menjalar dan yang tidak menjalar... Makanlah buahnya apabila ia berbuah dan tunaikanlah haknya (zakatnya) pada hari memetik hasilnya.", src: "QS. AL-AN'AM: 141", rule: "Nisab: 653 Kg Gabah | Haul: Setiap Panen" },
+            rikaz: { tr: "Dari Abu Hurairah radhiyallahu 'anhu, Rasulullah ﷺ bersabda: '...Dan pada rikaz (harta karun temuan) wajib dizakatkan seperlimanya (20%).'", src: "HR. BUKHARI NO. 1499 & MUSLIM NO. 1710", rule: "Nisab: Tidak Ada | Haul: Langsung" },
+            profesi: { tr: "Wahai orang-orang yang beriman! Infakkanlah sebagian dari hasil usahamu yang baik-baik.", src: "QS. AL-BAQARAH: 267", rule: "Nisab: Setara 520kg Beras (MUI) | Haul: Setiap Pendapatan" }
+        },
+        en: {
+            title: "Zakat Calculator", btn: "Calculate Zakat", soul: "Number of People", price: "Rice Price per Kg", value: "Total Wealth Value", curr: "USD", locale: "en-US", ruleLabel: "Nisab & Haul",
+            fitrah: { tr: "Allah's Messenger ﷺ enjoined the payment of one Sha' of dates or one Sha' of barley as Zakat-ul-Fitr on every Muslim slave or free, male or female, young or old.", src: "SAHIH BUKHARI & MUSLIM", rule: "Nisab: Per Person | Haul: Before Eid Prayer" },
+            maal: { tr: "Take, [O, Muhammad], from their wealth a charity by which you purify them and cause them increase, and invoke [Allah's blessings] upon them.", src: "QS. AT-TAWBAH: 103", rule: "Nisab: 85g Gold equivalent | Haul: 1 Year" },
+            emas: { tr: "And those who hoard gold and silver and spend it not in the way of Allah - give them tidings of a painful punishment.", src: "QS. AT-TAWBAH: 34", rule: "Nisab: 85g Gold / 595g Silver | Haul: 1 Year" },
+            tijarah: { tr: "O you who have believed, spend from the good things which you have earned and from that which We have produced for you from the earth.", src: "QS. AL-BAQARAH: 267", rule: "Nisab: 85g Gold | Haul: 1 Year" },
+            zuru: { tr: "Eat of their fruit when they yield and give its due [zakat] on the day of its harvest.", src: "QS. AL-AN'AM: 141", rule: "Nisab: 653 Kg Grain | Haul: Each Harvest" },
+            rikaz: { tr: "The Prophet ﷺ said: 'One-fifth (20%) is to be paid on the Rikaz (buried ancient treasure).'", src: "SAHIH BUKHARI", rule: "Nisab: None | Haul: Immediate" },
+            profesi: { tr: "O you who have believed, spend from the good things which you have earned.", src: "QS. AL-BAQARAH: 267", rule: "Nisab: Equivalent 520kg Rice | Haul: Each Payment" }
+        }
     };
 
-    function changeLanguage() {
-        const lang = document.getElementById("language").value;
-        document.getElementById("appTitle").innerText = dict[lang].title;
-        document.getElementById("btnCalculate").innerText = dict[lang].btn;
-        document.getElementById("resTitle").innerText = dict[lang].resTitle;
-        document.getElementById("resFormulaTxt").innerText = dict[lang].resForm;
-        document.getElementById("resTotalTxt").innerText = dict[lang].resTot;
-        document.getElementById("dalilTitle").innerText = dict[lang].dalil;
-    }
+    const arabicTexts = {
+        fitrah: "فَرَضَ رَسُولُ اللَّهِ ﷺ زَكَاةَ الْفِطْرِ صَاعًا مِنْ تَمْرٍ أَوْ صَاعًا مِنْ شَعِيرٍ عَلَى الْعَبْدِ وَالْحُرِّ وَالذَّكَرِ وَالأُنْثَى وَالصَّغِيرِ وَالْكَبِيرِ مِنَ الْمُسْلِمِينَ",
+        maal: "خُذْ مِنْ أَمْوَالِهِمْ صَدَقَةً تُطَهِّرُهُمْ وَتُزَكِّيهِمْ بِهَا وَصَلِّ عَلَيْهِمْ إِنَّ صَلَاتَكَ سَكَنٌ لَهُمْ",
+        emas: "وَالَّذِينَ يَكْنِزُونَ الذَّهَبَ وَالْفِضَّةَ وَلَا يُنْفِقُونَهَا فِي سَبِيلِ اللَّهِ فَبَشِّرْهُمْ بِعَذَابٍ أَلِيمٍ",
+        tijarah: "يَا أَيُّهَا الَّذِينَ آمَنُوا أَنْفِقُوا مِنْ طَيِّبَاتِ مَا كَسَبْتُمْ وَمِمَّا أَخْرَجْنَا لَكُمْ مِنَ الْأَرْضِ",
+        zuru: "كُلُوا مِنْ ثَمَرِهِ إِذَا أَثْمَرَ وَآتُوا حَقَّهُ يَوْمَ حَصَادِهِ",
+        rikaz: "عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ أَنَّ رَسُولَ اللَّهِ ﷺ قَالَ: وَفِي الرِّكَازِ الْخُمُسُ",
+        profesi: "يَا أَيُّهَا الَّذِينَ آمَنُوا أَنْفِقُوا مِنْ طَيِّبَاتِ مَا كَسَبْتُمْ"
+    };
 
-    function hideAllInputs() {
-        document.getElementById("inputStandard").style.display = "none";
-        document.getElementById("inputPertanian").style.display = "none";
-        document.getElementById("inputTernak").style.display = "none";
-        document.getElementById("inputFitrah").style.display = "none";
-        document.getElementById("resultBox").style.display = "none";
-        document.getElementById("dalilBox").style.display = "none";
+    function updateUI() {
+        const l = document.getElementById('language').value;
+        const d = zakatData[l] || zakatData['en'];
+        document.getElementById('appTitle').innerText = d.title;
+        document.getElementById('btnCalc').innerText = d.btn;
+        document.getElementById('lblPrice').innerText = d.price + ` (${d.curr})`;
+        document.getElementById('lblSoul').innerText = d.soul;
+        document.getElementById('lblValue').innerText = d.value;
+        document.getElementById('lblRule').innerText = d.ruleLabel;
+        document.getElementById('resultBox').style.display = 'none';
     }
 
     function toggleInputs() {
-        hideAllInputs();
-        const type = document.getElementById("zakatType").value;
-        
-        if (["emas_uang", "tijarah", "profesi", "rikaz", "tambang"].includes(type)) {
-            document.getElementById("inputStandard").style.display = "block";
-        } else if (type === "zuru") {
-            document.getElementById("inputPertanian").style.display = "block";
-        } else if (type === "anam") {
-            document.getElementById("inputTernak").style.display = "block";
-        } else if (type === "fitrah") {
-            document.getElementById("inputFitrah").style.display = "block";
-        }
+        const type = document.getElementById('zakatType').value;
+        document.getElementById('dynamicInputs').style.display = type ? 'block' : 'none';
+        document.getElementById('fitrahFields').style.display = type === 'fitrah' ? 'block' : 'none';
+        document.getElementById('otherFields').style.display = type !== 'fitrah' && type !== '' ? 'block' : 'none';
     }
 
     function calculateZakat() {
-        const type = document.getElementById("zakatType").value;
-        if (!type) { alert("Silakan pilih jenis zakat terlebih dahulu."); return; }
+        const lang = document.getElementById('language').value;
+        const type = document.getElementById('zakatType').value;
+        if (!type) return;
 
-        let formulaText = "";
-        let resultText = "";
-        let dalilHTML = "";
+        // trackEvent(type, lang); // Aktifkan jika gtag sudah dipasang
 
-        // Logika 2.5% (Emas, Uang, Tijarah, Profesi, Tambang)
-        if (["emas_uang", "tijarah", "profesi", "tambang"].includes(type)) {
-            const val = parseFloat(document.getElementById("standardValue").value);
-            if (!val || val <= 0) return alert("Masukkan nilai yang valid.");
-            
-            const zakat = val * 0.025;
-            formulaText = `2.5% x ${val.toLocaleString()}`;
-            resultText = zakat.toLocaleString();
+        const d = zakatData[lang] || zakatData['en'];
+        let total = 0;
 
-            dalilHTML = `
-                <div class="arabic">خُذْ مِنْ اَمْوَالِهِمْ صَدَقَةً تُطَهِّرُهُمْ وَتُزَكِّيْهِمْ بِهَا</div>
-                <p><strong>QS. At-Tawbah: 103</strong> - "Ambillah zakat dari sebagian harta mereka, dengan zakat itu kamu membersihkan dan mensucikan mereka..."</p>
-                <p>Kadar wajib untuk harta simpanan, niaga, dan penghasilan adalah <strong>2.5% (1/40)</strong> setelah mencapai nisab.</p>
-            `;
-        } 
-        // Logika Rikaz (20%)
-        else if (type === "rikaz") {
-            const val = parseFloat(document.getElementById("standardValue").value);
-            if (!val || val <= 0) return alert("Masukkan nilai yang valid.");
-            
-            const zakat = val * 0.20;
-            formulaText = `20% (Seperlima) x ${val.toLocaleString()}`;
-            resultText = zakat.toLocaleString();
-
-            dalilHTML = `
-                <div class="arabic">وَفِي الرِّكَازِ الْخُمُسُ</div>
-                <p><strong>Hadits Riwayat Bukhari & Muslim</strong> - "Dan pada harta rikaz (temuan/karun) wajib dikeluarkan zakatnya sebesar seperlima (20%)."</p>
-                <p>Tidak disyaratkan haul, wajib dibayar segera saat ditemukan.</p>
-            `;
-        }
-        // Logika Pertanian (10% atau 5%)
-        else if (type === "zuru") {
-            const val = parseFloat(document.getElementById("taniValue").value);
-            const rate = parseFloat(document.querySelector('input[name="irigasi"]:checked').value);
-            if (!val || val <= 0) return alert("Masukkan nilai panen yang valid.");
-
-            const zakat = val * rate;
-            formulaText = `${rate * 100}% x ${val.toLocaleString()}`;
-            resultText = zakat.toLocaleString();
-
-            dalilHTML = `
-                <div class="arabic">وَآتُوا حَقَّهُ يَوْمَ حَصَادِهِ</div>
-                <p><strong>QS. Al-An'am: 141</strong> - "...dan tunaikanlah haknya (zakatnya) di hari memetik hasilnya (panen)..."</p>
-                <p><strong>Hadits Bukhari:</strong> "Tanaman yang disirami oleh hujan atau mata air, zakatnya sepersepuluh (10%). Sedangkan yang disirami dengan menggunakan tenaga/biaya, zakatnya seperdua puluh (5%)."</p>
-            `;
-        }
-        // Logika Peternakan (Sederhana berdasarkan Nisab awal)
-        else if (type === "anam") {
-            const ternakType = document.getElementById("ternakType").value;
-            const count = parseInt(document.getElementById("ternakCount").value);
-            if (!count || count <= 0) return alert("Masukkan jumlah ekor yang valid.");
-
-            if (ternakType === "kambing") {
-                if (count < 40) { resultText = "0 (Belum mencapai nisab 40 ekor)"; formulaText = "Nisab Kambing minimal 40 ekor"; }
-                else if (count >= 40 && count <= 120) { resultText = "1 Ekor Kambing/Domba"; formulaText = "Kelompok 40 - 120 ekor"; }
-                else if (count >= 121 && count <= 200) { resultText = "2 Ekor Kambing/Domba"; formulaText = "Kelompok 121 - 200 ekor"; }
-                else { resultText = `${Math.floor(count / 100) + 1} Ekor Kambing`; formulaText = "Setiap kelipatan 100 ekor ditambah 1 ekor"; }
-            } else if (ternakType === "sapi") {
-                if (count < 30) { resultText = "0 (Belum mencapai nisab 30 ekor)"; formulaText = "Nisab Sapi minimal 30 ekor"; }
-                else { 
-                    const tabi = Math.floor(count / 30);
-                    resultText = `Minimal ${tabi} Ekor Tabi' (Sapi umur 1 tahun)`; 
-                    formulaText = "Setiap 30 ekor sapi = 1 Tabi', setiap 40 ekor = 1 Musinnah (umur 2 thn)"; 
-                }
-            }
-
-            dalilHTML = `
-                <p><strong>Hadits Riwayat Bukhari dan Abu Dawud:</strong></p>
-                <p>Nisab peternakan berlaku untuk hewan yang digembalakan di tempat umum (Sa'imah) untuk berkembang biak atau diambil susunya, bukan hewan pekerja. Nisab kambing adalah 40 ekor, dan nisab sapi adalah 30 ekor.</p>
-            `;
-        }
-        // Logika Fitrah
-        else if (type === "fitrah") {
-            const persons = parseInt(document.getElementById("personCount").value);
-            const price = parseFloat(document.getElementById("ricePrice").value);
-            if (!persons || !price) return alert("Masukkan data valid.");
-
-            const zakat = persons * 2.5 * price;
-            formulaText = `${persons} Orang x 2.5 Kg x ${price.toLocaleString()}`;
-            resultText = zakat.toLocaleString();
-
-            dalilHTML = `
-                <div class="arabic">فَرَضَ رَسُولُ اللَّهِ ﷺ زَكَاةَ الْفِطْرِ صَاعًا مِنْ تَمْرٍ أَوْ صَاعًا مِنْ شَعِيرٍ</div>
-                <p><strong>Hadits Riwayat Bukhari & Muslim:</strong> "Rasulullah ﷺ mewajibkan zakat fitrah, berupa satu sha’ kurma atau gandum..." (Setara 2.5 - 2.7 kg makanan pokok).</p>
-            `;
+        if (type === 'fitrah') {
+            const price = parseFloat(document.getElementById('ricePrice').value) || 0;
+            const souls = parseFloat(document.getElementById('soulCount').value) || 0;
+            total = 2.5 * price * souls; 
+        } else {
+            const val = parseFloat(document.getElementById('totalValue').value) || 0;
+            const rates = { maal: 0.025, emas: 0.025, tijarah: 0.025, zuru: 0.05, rikaz: 0.20, profesi: 0.025 };
+            total = val * (rates[type] || 0.025);
         }
 
-        document.getElementById("resFormula").innerText = formulaText;
-        document.getElementById("resTotal").innerText = resultText;
-        document.getElementById("dalilContent").innerHTML = dalilHTML;
+        const formatter = new Intl.NumberFormat(d.locale, { style: 'currency', currency: d.curr, maximumFractionDigits: 0 });
+        document.getElementById('resTotal').innerText = formatter.format(total);
         
-        document.getElementById("resultBox").style.display = "block";
-        document.getElementById("dalilBox").style.display = "block";
+        const content = d[type] || zakatData['id'][type];
+        document.getElementById('resArabic').innerText = arabicTexts[type];
+        document.getElementById('resTrans').innerText = `"${content.tr}"`;
+        document.getElementById('resSource').innerText = content.src;
+        document.getElementById('resRule').innerText = content.rule;
+        document.getElementById('resultBox').style.display = 'block';
+        
+        // Auto scroll ke hasil di mobile
+        document.getElementById('resultBox').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // Latar belakang animasi yang lebih ringan untuk mobile
+    const bg = document.getElementById('bgLayer');
+    const icons = ['⭐', '✨', '🌙', '🌿'];
+    for(let i=0; i<10; i++) {
+        let span = document.createElement('span'); 
+        span.className = 'floating-icon';
+        span.innerText = icons[Math.floor(Math.random()*icons.length)];
+        span.style.left = Math.random() * 100 + 'vw';
+        span.style.animationDelay = Math.random() * 5 + 's';
+        span.style.fontSize = (Math.random() * 10 + 15) + 'px';
+        bg.appendChild(span);
     }
 </script>
 </body>
