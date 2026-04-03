@@ -28,11 +28,38 @@
         header { text-align: center; margin-bottom: 25px; }
         header h1 { color: var(--secondary); margin-bottom: 5px; }
 
-        .guide-box { background: var(--guide-bg); border: 1px solid var(--guide-border); padding: 20px; border-radius: 12px; margin-bottom: 25px; }
-        .guide-box h3 { margin-top: 0; color: #854d0e; display: flex; align-items: center; gap: 8px; }
-        .guide-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; font-size: 0.9rem; }
-        .step { background: rgba(255,255,255,0.5); padding: 10px; border-radius: 8px; border: 1px solid #fef08a; }
-        .step b { color: var(--secondary); display: block; margin-bottom: 4px; }
+        /* UPDATED GUIDE BOX STYLES */
+        .guide-box { 
+            background: var(--guide-bg); 
+            border: 1px solid var(--guide-border); 
+            padding: 12px 15px; 
+            border-radius: 12px; 
+            margin-bottom: 25px; 
+        }
+        .guide-box h3 { 
+            margin-top: 0; 
+            margin-bottom: 10px;
+            color: #854d0e; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            font-size: 0.9rem;
+        }
+        .guide-steps { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); /* Forced to 1 row (3 columns) */
+            gap: 10px; 
+            font-size: 0.75rem; /* Smaller font size */
+            line-height: 1.3;
+        }
+        .step { 
+            background: rgba(255,255,255,0.6); 
+            padding: 8px; 
+            border-radius: 8px; 
+            border: 1px solid #fef08a; 
+            min-width: 0; /* Prevents grid blowout */
+        }
+        .step b { color: var(--secondary); display: block; margin-bottom: 2px; font-size: 0.8rem; }
 
         .card { background: var(--card); border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); padding: 25px; margin-bottom: 25px; }
         
